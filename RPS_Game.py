@@ -46,7 +46,7 @@ class RockPaperScissors:
             print(f'You chose: {user_choice}')
 
             if self.twoplayers :
-                opp_choice = input('Choose your weapon P1'
+                opp_choice = input('Choose your weapon P2'
                               ' [R]ock], [P]aper, or [S]cissors: ')
 
 
@@ -64,15 +64,15 @@ class RockPaperScissors:
                 print('Tie!')
                 play = self.check_play_status()
             elif opp_choice == 'R' and user_choice == 'S':
-                print('Rock beats scissors, I win!')
+                print('Rock beats scissors, P2 (or robot) win!')
                 play = self.check_play_status()
             elif opp_choice == 'S' and user_choice == 'P':
-                print('Scissors beats paper! I win!')
+                print('Scissors beats paper! P2 (or robot) win!')
                 play = self.check_play_status()
             elif opp_choice == 'P' and user_choice == 'R':
-                print('Paper beats rock, I win!')
+                print('Paper beats rock, P2 (or robot) win!')
                 play = self.check_play_status()
             else:
-                print('You win!\n')
+                print('P1 win !\n')
                 play = self.check_play_status()
 
