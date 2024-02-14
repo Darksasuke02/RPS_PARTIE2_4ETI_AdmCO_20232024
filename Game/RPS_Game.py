@@ -60,19 +60,20 @@ class RockPaperScissors:
 
                 print(f'I chose: {opp_choice}')
             
-            if opp_choice == user_choice:
+            if opp_choice == user_choice :
                 print('Tie!')
-                play = self.check_play_status()
+                return(0)
             elif opp_choice == 'R' and user_choice == 'S':
                 print('Rock beats scissors, P2 (or robot) win!')
-                play = self.check_play_status()
+                return(2)
             elif opp_choice == 'S' and user_choice == 'P':
                 print('Scissors beats paper! P2 (or robot) win!')
-                play = self.check_play_status()
+                return(2)
             elif opp_choice == 'P' and user_choice == 'R':
                 print('Paper beats rock, P2 (or robot) win!')
-                play = self.check_play_status()
+                return(2)
             else:
                 print('P1 win !\n')
-                play = self.check_play_status()
+                return(1)
+                
 
