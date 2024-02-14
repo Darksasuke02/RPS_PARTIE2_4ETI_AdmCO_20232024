@@ -4,10 +4,11 @@ import os
 
 
 class RockPaperScissors:
-    def __init__(self, twoplayers):
+    def __init__(self, twoplayers, P1=None, P2=None):
         self.valid_responses = ['yes', 'no']
         self.twoplayers=twoplayers
-
+        self.P1=P1
+        self.P2=P2
     def check_play_status(self):
         valid_responses = ['yes', 'no']
         while True:
@@ -33,9 +34,12 @@ class RockPaperScissors:
             
             print('')
             print('Rock, Paper, Scissors - Shoot!')
-
-            user_choice = input('Choose your weapon P1'
-                              ' [R]ock], [P]aper, or [S]cissors: ')
+            user_choice=self.P1
+            opp_choice=self.P2
+            
+            if user_choice==None :
+                user_choice = input('Choose your weapon P1'
+                                ' [R]ock], [P]aper, or [S]cissors: ')
 
 
             if not re.match("[SsRrPp]", user_choice):
@@ -45,7 +49,7 @@ class RockPaperScissors:
 
             print(f'You chose: {user_choice}')
 
-            if self.twoplayers :
+            if self.twoplayers and opp_choice==None :
                 opp_choice = input('Choose your weapon P2'
                               ' [R]ock], [P]aper, or [S]cissors: ')
 
@@ -54,7 +58,7 @@ class RockPaperScissors:
                     print('Please choose a letter:')
                     print('[R]ock, [P]aper, or [S]cissors')
                     continue
-            else :    
+            elif opp_choice==None :    
                 choices = ['R', 'P', 'S']
                 opp_choice = random.choice(choices)
 
