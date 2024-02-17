@@ -1,0 +1,17 @@
+image: python:3.8
+
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  script:
+    - pip install -e .
+    - pip install wheel twine
+    - python3 Game/RPS_Tools/testrps.py
+
+build:
+  stage: build
+  script:
+    - python3 setup.py bdist_wheel
