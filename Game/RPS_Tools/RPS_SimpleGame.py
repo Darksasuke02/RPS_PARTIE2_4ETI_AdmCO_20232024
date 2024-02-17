@@ -1,5 +1,5 @@
 from RPS_Game import RockPaperScissors
-
+import re
 '''
 Classe qui permet la gestion des parties
 '''
@@ -11,9 +11,9 @@ class RPS_SimpleGame_class :
     P2 : facultatif choix du joueur 2
     '''
     def __init__(self, P1=None, P2=None):
-        if P1.lower() not in ["r", "p", "s"]:
+        if P1 not in ["r", "p", "s", "R", "P", "S"]:
             P1=None
-        elif P2.lower() not in ["r", "p", "s"]:
+        elif P2 not in ["r", "p", "s", "R", "P", "S"]:
             P2=None
         self.P1=P1
         self.P2=P2
@@ -37,7 +37,21 @@ class RPS_SimpleGame_class :
         self.SimplegameTwoplayers()
 
 if __name__ == '__main__':
-    partiesolo=RPS_SimpleGame_class('S','P')
-    partiesolo.SimplegameTwoplayers()
- 
+    mode_de_jeu = ["ordi", "1v1"]
+    while True:
+        try:
+            response = input('Quel mode de jeux 1v1 ou ordi ')
+            if response.lower() not in mode_de_jeu:
+                raise ValueError('ordi or 1v1 only')
 
+            if response.lower() == 'ordi':
+                partiesolo=RPS_SimpleGame_class()
+                partiesolo.SimplegameOneplayer()
+            
+            if response.lower() == '1v1':
+                partiea2=RPS_SimpleGame_class()
+                partiea2.SimplegameTwoplayers()
+
+        except ValueError as err:
+                print(err)
+            
