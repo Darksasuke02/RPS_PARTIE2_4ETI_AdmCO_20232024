@@ -2,13 +2,26 @@ import random
 import re
 import os
 
-
+'''
+Classe qui permet de jouer de traiter les manches de pierre feuille ciseaux
+'''
 class RockPaperScissors:
+    '''
+    Constructeur de ma classe
+    Entrée :
+    twoplayers : bool qui détermine si la partie sera un 2v2, ou une partie contre l'ordinateur
+    P1 : facultatif Choix du playeur 1  il sera demandé via une input si nous renseignée ici
+    P2 : facultatif Choix du joueur 2 il sera demandé via une input si non renseignée
+    '''
     def __init__(self, twoplayers, P1=None, P2=None):
         self.valid_responses = ['yes', 'no']
         self.twoplayers=twoplayers
         self.P1=P1
         self.P2=P2
+
+    '''
+    Classe qui permet de gérer le relancement de la partie selon l'input utilisateur yes-ralance no-arrete et clear la console
+    '''
     def check_play_status(self):
         valid_responses = ['yes', 'no']
         while True:
@@ -27,7 +40,9 @@ class RockPaperScissors:
             except ValueError as err:
                 print(err)
 
-
+    '''
+    classe qui permet de gérer les maches à la fois les inputs utilisateur, (génère le choix ordi si nécessaire) et détermine le gagnant
+    '''
     def play_rps(self):
         play = True
         while play:
