@@ -23,8 +23,10 @@ class RPSSimpleGameclass:
         """
         if player_1 not in ["r", "p", "s", "R", "P", "S"]:
             player_1 = None
+            raise ValueError("Mauvais Fake Input Player 1")
         elif player_2 not in ["r", "p", "s", "R", "P", "S"]:
             player_2 = None
+            raise ValueError("Mauvais Fake Input Player 2")
         self.player_1 = player_1
         self.player_2 = player_2
 
