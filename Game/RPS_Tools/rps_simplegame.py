@@ -99,7 +99,7 @@ class GestionFichier:
         try:
             with open(self.nom_fichier, "a", encoding="utf-8") as fich:
                 fich.write(contenu + "\n")
-            print("Contenu ajouté avec succès au fichier", self.nom_fichier)
+            #print("Contenu ajouté avec succès au fichier", self.nom_fichier)
         except IOError as gestionfich:
             raise IOError(
                 "Erreur : Impossible d'écrire dans le fichier", self.nom_fichier

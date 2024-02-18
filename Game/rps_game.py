@@ -116,10 +116,15 @@ class RockPaperScissors:
                 return (1, user_choice)
 
     def creation_tableau(self):
+        """
+        Cette méthode se sert du fichier des parties jouer pour en créer
+        un tableau, facilement exploitables dans les méthodes de
+        stratégie.
+        """
         chemin_fichier = "manches_jouees.txt"
         if os.path.isfile(chemin_fichier):
             # Lecture du fichier
-            with open(chemin_fichier, "r") as file:
+            with open(chemin_fichier, "r", encoding="utf-8") as file:
                 contenu = file.readlines()
 
             if self.tableau == []:
@@ -129,19 +134,19 @@ class RockPaperScissors:
                 for ligne in contenu:
 
                     self.tableau.append([])
-                    partie_apres_deux_points = ligne.strip().split(":")[1]
-                    # Supprimer les caractères de saut de ligne et diviser la ligne en fonction du délimiteur ","
-                    elements1 = partie_apres_deux_points.strip().split(",")[
-                        1
-                    ]  # Prendre seulement la partie après le délimiteur ":"
-                    elements2 = partie_apres_deux_points.strip().split(",")[0]
+                    partie_deux_points = ligne.strip().split(":")[1]
+                    # Supprimer les caractères de saut de ligne et
+                    # diviser la ligne en fonction du délimiteur ","
+                    elements1 = partie_deux_points.strip().split(",")[1] 
+                    # Prendre seulement la partie après le délimiteur ":"
+                    elements2 = partie_deux_points.strip().split(",")[0]
                     # Ajouter les éléments au tableau
                     self.tableau[compteur].append(elements2)
                     self.tableau[compteur].append(elements1)
                     compteur = compteur + 1
 
                     # Afficher le tableau
-                    print(self.tableau)
+                    # print(self.tableau)
 
             else:
                 valeur_dern_ligne = len(self.tableau) + 1
@@ -149,20 +154,28 @@ class RockPaperScissors:
                     chemin_fichier, len(self.tableau) + 1
                 )
                 self.tableau.append([])
-                partie_apres_deux_points = dernière_ligne.strip().split(":")[1]
-                # Supprimer les caractères de saut de ligne et diviser la ligne en fonction du délimiteur ","
-                elements1 = partie_apres_deux_points.strip().split(",")[
-                    1
-                ]  # Prendre seulement la partie après le délimiteur ":"
-                elements2 = partie_apres_deux_points.strip().split(",")[0]
-                # Ajouter les éléments au tableau
+                partie = dernière_ligne.strip().split(":")[1]
+                # Recupérer la partie après les :
+                elements1 = partie.strip().split(",")[1]
+                # Récupérer la partie après
+                elements2 = partie.strip().split(",")[0]
+                # Récupérer la partie avant
                 self.tableau[valeur_dern_ligne].append(elements2)
                 self.tableau[valeur_dern_ligne].append(elements1)
+
         else:
             print("Le fichier spécifié n'existe pas.")
         return self.tableau
 
     def strat1(self):
+        """
+        Méthode qui gère la stratégie de l'ordi en partie player contre machine
+        Elle regardes la stratégie des utilisateurs (sans regarder le login name)
+        Elle renvoie une pondération permettant d'améliorer le choix de l'ordi
+        Il y a inversement des R, P et S et c'est normal (si R sort beaucoup il faut jouer P)
+        Sorties :
+            Liste pondération : [R, P, S]
+        """
         comptages = {"R": 0, "P": 0, "S": 0}
         for i in range(len(self.tableau)):
             # Accéder à la deuxième lettre de l'élément et l'incrémenter dans le dictionnaire
@@ -175,6 +188,3 @@ class RockPaperScissors:
         return ponderation
 
 
-if __name__ == "__main__":
-    test = RockPaperScissors(False)
-    test.creation_tableau()

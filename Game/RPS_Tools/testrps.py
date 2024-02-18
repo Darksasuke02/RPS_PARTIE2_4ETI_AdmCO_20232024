@@ -66,10 +66,28 @@ class Testop(unittest.TestCase):
 
         with open("test_file.txt", "r", encoding="utf-8") as fich:
             contenu_reel = fich.read()
-
         self.assertEqual(contenu_attendu, contenu_reel[:-1])  # à cause du \n
         with open("test_file.txt", "w", encoding="utf-8"):
             pass
+
+    def test_creation_tableau(self):
+        """
+        Méthode de test qui permet la vérification du tableau qui sert aux
+        pondérations, et test aussi strat1
+        """
+        with open("manches_jouees.txt", "w", encoding="utf-8") as fichier:
+            fichier.write("ralino:0,P\n")
+            fichier.write("ralino:1,R\n")
+        contenu_attendu = [["0","P"],["1","R"]]
+        test = RockPaperScissors(False)
+        resultatab=test.creation_tableau()
+        self.assertEqual(contenu_attendu, resultatab)  # à cause du \n
+
+        pondetest=test.strat1()
+        self.assertEqual(pondetest, [0,1,1])
+        with open("manches_jouees.txt", "w", encoding="utf-8"):
+            pass
+
 
 
 if __name__ == "__main__":
