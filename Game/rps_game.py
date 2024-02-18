@@ -92,16 +92,16 @@ class RockPaperScissors:
 
             if opp_choice == user_choice:
                 print("Tie!")
-                return 0
+                return (0, user_choice)
             elif opp_choice == "R" and user_choice == "S":
                 print("Rock beats scissors, player_2 (or robot) win!")
-                return 2
+                return (2, user_choice)
             elif opp_choice == "S" and user_choice == "P":
                 print("Scissors beats paper! player_2 (or robot) win!")
-                return 2
+                return (2, user_choice)
             elif opp_choice == "P" and user_choice == "R":
                 print("Paper beats rock, player_2 (or robot) win!")
-                return 2
+                return (2, user_choice)
             else:
                 print("player_1 win !\n")
-                return 1
+                return (1, user_choice)
