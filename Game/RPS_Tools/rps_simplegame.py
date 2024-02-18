@@ -21,9 +21,9 @@ class RPSSimpleGameclass:
             player_1 : facultatif choix du joueur 1
             player_2 : facultatif choix du joueur 2
         """
-        if player_1 not in ["r", "p", "s", "R", "P", "S"]:
+        if player_1 not in ["r", "p", "s", "R", "P", "S", None]:
             raise ValueError("Mauvais Fake Input Player 1")
-        elif player_2 not in ["r", "p", "s", "R", "P", "S"]:
+        elif player_2 not in ["r", "p", "s", "R", "P", "S", None]:
             raise ValueError("Mauvais Fake Input Player 2")
         self.player_1 = player_1
         self.player_2 = player_2

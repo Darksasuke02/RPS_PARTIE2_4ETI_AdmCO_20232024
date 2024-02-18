@@ -63,7 +63,7 @@ Pour ce qui est de l'input Yes ou No pour relancer ou quitter le jeu, Il raise b
 La mise en place des test a été facilité par la mise en place de fake inputs, si jamais il y a erreur dans ces fakes input il y a un raise d'erreur qui cette fois est bloquant.
 #### 3. Retour Pylint
 
-Après toute les modifications possibles, le score final de pylint pour cette version est de 9.70/10 pour le module de test (testrps.py), de 10/10 pour le module de gestion des parties (rps_simplegame.py). Et de 9.52 pour le module de gestion des manches (rps_game.py)
+Après toute les modifications possibles, le score final de pylint pour cette version est de 9.70/10 pour le module de test (testrps.py), de 9.71/10 pour le module de gestion des parties (rps_simplegame.py). Et de 9.52 pour le module de gestion des manches (rps_game.py)
 
 #### 4. Les tests
 
