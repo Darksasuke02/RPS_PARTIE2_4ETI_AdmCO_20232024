@@ -61,4 +61,3 @@ class Testop(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-raise ValueError("Mauvais Fake Input Player 1")
