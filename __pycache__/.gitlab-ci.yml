@@ -7,9 +7,10 @@ stages:
 test:
   stage: test
   script:
+    - cd Game
     - pip install -e .
     - pip install wheel twine
-    - python3 Game/RPS_Tools/testrps.py
+    - python3 RPS_Tools/testrps.py
 
 build:
   stage: build
