@@ -107,7 +107,7 @@ class GestionFichier:
 
 
 if __name__ == "__main__":
-    gestionnaire = GestionFichier("maches_jouées.txt")
+    gestionnaire = GestionFichier("manches_jouees.txt")
     mode_de_jeu = ["ordi", "1v1"]
     while True:
         try:

@@ -7,6 +7,7 @@ import random
 import re
 import os
 import sys
+import linecache
 
 
 class RockPaperScissors:
@@ -27,6 +28,7 @@ class RockPaperScissors:
         self.twoplayers = twoplayers
         self.player_1 = player_1
         self.player_2 = player_2
+        self.tableau = []
 
     def check_play_status(self):
         """
@@ -85,8 +87,15 @@ class RockPaperScissors:
                     print("[R]ock, [P]aper, or [S]cissors")
                     continue
             elif opp_choice is None:
-                choices = ["R", "P", "S"]
-                opp_choice = random.choice(choices)
+                self.creation_tableau()
+                if self.tableau == []:
+                    choices = ["R", "P", "S"]
+                    opp_choice = random.choice(choices)
+
+                else:
+                    ponderation = self.strat1()
+                    choix = ["R", "P", "S"]
+                    opp_choice = random.choices(choix, weights=ponderation)[0]
 
                 print(f"I chose: {opp_choice}")
 
@@ -105,3 +114,67 @@ class RockPaperScissors:
             else:
                 print("player_1 win !\n")
                 return (1, user_choice)
+
+    def creation_tableau(self):
+        chemin_fichier = "manches_jouees.txt"
+        if os.path.isfile(chemin_fichier):
+            # Lecture du fichier
+            with open(chemin_fichier, "r") as file:
+                contenu = file.readlines()
+
+            if self.tableau == []:
+                # Initialisation du tableau
+                compteur = 0
+                # Traitement de chaque ligne du fichier
+                for ligne in contenu:
+
+                    self.tableau.append([])
+                    partie_apres_deux_points = ligne.strip().split(":")[1]
+                    # Supprimer les caractères de saut de ligne et diviser la ligne en fonction du délimiteur ","
+                    elements1 = partie_apres_deux_points.strip().split(",")[
+                        1
+                    ]  # Prendre seulement la partie après le délimiteur ":"
+                    elements2 = partie_apres_deux_points.strip().split(",")[0]
+                    # Ajouter les éléments au tableau
+                    self.tableau[compteur].append(elements2)
+                    self.tableau[compteur].append(elements1)
+                    compteur = compteur + 1
+
+                    # Afficher le tableau
+                    print(self.tableau)
+
+            else:
+                valeur_dern_ligne = len(self.tableau) + 1
+                dernière_ligne = linecache.getline(
+                    chemin_fichier, len(self.tableau) + 1
+                )
+                self.tableau.append([])
+                partie_apres_deux_points = dernière_ligne.strip().split(":")[1]
+                # Supprimer les caractères de saut de ligne et diviser la ligne en fonction du délimiteur ","
+                elements1 = partie_apres_deux_points.strip().split(",")[
+                    1
+                ]  # Prendre seulement la partie après le délimiteur ":"
+                elements2 = partie_apres_deux_points.strip().split(",")[0]
+                # Ajouter les éléments au tableau
+                self.tableau[valeur_dern_ligne].append(elements2)
+                self.tableau[valeur_dern_ligne].append(elements1)
+        else:
+            print("Le fichier spécifié n'existe pas.")
+        return self.tableau
+
+    def strat1(self):
+        comptages = {"R": 0, "P": 0, "S": 0}
+        for i in range(len(self.tableau)):
+            # Accéder à la deuxième lettre de l'élément et l'incrémenter dans le dictionnaire
+            comptages[self.tableau[i][1]] += 1
+
+        print("Nombre de 'R' :", comptages["R"])
+        print("Nombre de 'P' :", comptages["P"])
+        print("Nombre de 'S' :", comptages["S"])
+        ponderation = [comptages["S"], comptages["R"], comptages["P"]]
+        return ponderation
+
+
+if __name__ == "__main__":
+    test = RockPaperScissors(False)
+    test.creation_tableau()
