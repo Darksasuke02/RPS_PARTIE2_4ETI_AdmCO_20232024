@@ -88,6 +88,7 @@ tout fonctionne correctement à la fois le test et la création de .whl.
 
 Cette nouvelle fonctionnalité stocke les manches jouées uniquement pour les mangeurs de cookies. En effet, dans le mode de jeux contre l'ordinateur a été rajouté une phase de login et une sauvegarde des manches jouées (obtionnel).
 Les manches sauvegardées sont stockées dans le fichier : manches_jouées.txt sous la forme une ligne une manche et "pseudo:X,Y" où X est le résultat (0:égalité, 1:victoire et 2:défaite) et Y le choix du joueur (R, P ou S)
+La fonctionnalité a ensuite été merge puis tag sur la branche principale main.
 
 #### 1. Organisation du code
 
@@ -104,19 +105,18 @@ Pour la gestion de l'écriture nous avons utilisées un try exept qui produit un
 
 #### 3. Retour Pylint
 
-Après toute les modifications, le score final de pylint pour cette version est de 9.70/10 pour le module de test (testrps.py), est descendu à 9.38/10 pour le module de gestion des parties (rps_simplegame.py). Et de 9.52 pour le module de gestion des manches (rps_game.py) qui n'a pas changé ou presque.
+Après toute les modifications, le score final de pylint pour cette version est de 9.77/10 pour le module de test (testrps.py), est descendu à 9.38/10 pour le module de gestion des parties (rps_simplegame.py). Et de 9.52 pour le module de gestion des manches (rps_game.py) qui n'a pas changé ou presque.
 
 #### 4. Les tests
 
 Les tests s'exécutent en lancant le fichier testrps.py. Il ont été automatisé avec le module python unittest. 
-Ils ont été particulièrement difficile à mettre en place notamment à cause d'erreurs fondamentale dans l'architecture et l'agencement du code. Il y a de nombreux inputs bloquant dans le module qui traite les manches ce qui pose ce qui rend la mise en place de tests très laborieux.
-Finalement seul un petit nombre de test sur la méthode rps_play du module rps_game ont pu être mis en place.
 
-La gestion de problématiques liée aux problèmes de codes n'étant pas l'objectif du module, mes codes de tests rentent incomplet et à améliorer.
+Malgrès les difficultés de tests liée aux différents input bloquants, nous avons pu tester la classe GestionFichier et en particulier sa méthode ajouter_contenu.
+
 
 #### 5. L'automatisation des tests et création du .whl
 
-Pour tester, une copie du repository a été faite sur gitlab.
+Rien ne change vraiment, pour tester, le gitlab a été mis à jour.
 tout fonctionne correctement à la fois le test et la création de .whl.
 
 
