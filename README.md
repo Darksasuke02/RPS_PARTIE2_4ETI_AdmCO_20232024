@@ -43,11 +43,13 @@ pip install setuptools
 ```
 unittest est présent dans la bibliothèque standart python il ne faut rien installer
 
-4. Ajouter le package Game
+4. Ajouter le package Game et RPS_Tools
 ```bash
+#depuis les dossiers où se trouve les différents fichiers setup
 pip install -e .
 #ou
-pip install -e chemin/vers/game
+pip install -e chemin/vers/Game
+pip install -e chemin/vers/RPS_Tools
 ```
 Tout fonctionne vous pouvez lancer testop.py
 
