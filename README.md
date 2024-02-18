@@ -122,4 +122,4 @@ Rien ne change vraiment, pour tester, le gitlab a été mis à jour.
 tout fonctionne correctement à la fois le test et la création de .whl.
 
 
-
+![illustration](images/auto2.png)
